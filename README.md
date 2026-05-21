@@ -6,21 +6,29 @@
   <a href="https://pypi.org/project/bnnr/"><img src="https://img.shields.io/pypi/v/bnnr?style=flat-square" alt="PyPI"></a>
   <a href="https://pypi.org/project/bnnr/"><img src="https://img.shields.io/pypi/pyversions/bnnr?style=flat-square" alt="Python"></a>
   <a href="https://github.com/bnnr-team/bnnr/stargazers"><img src="https://img.shields.io/github/stars/bnnr-team/bnnr?style=flat-square&logo=github" alt="GitHub stars"></a>
-  <a href="https://pypi.org/project/bnnr/"><img src="https://img.shields.io/pypi/dt/bnnr?label=downloads&style=flat-square" alt="PyPI downloads"></a>
+  <a href="https://pepy.tech/projects/bnnr"><img src="https://static.pepy.tech/personalized-badge/bnnr?period=total&amp;units=INTERNATIONAL_SYSTEM&amp;left_color=BLACK&amp;right_color=GREEN&amp;left_text=downloads" alt="PyPI downloads"></a>
   <a href="https://github.com/bnnr-team/bnnr/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bnnr-team/bnnr?style=flat-square" alt="License"></a>
   <a href="https://github.com/bnnr-team/bnnr/actions/workflows/ci.yml"><img src="https://github.com/bnnr-team/bnnr/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
 </p>
 
 <p align="center">
-  <video src="docs/assets/hero-promo.mp4" controls width="720" poster="docs/assets/hero-promo-poster.jpg">
-  </video>
+  <a href="https://github.com/bnnr-team/bnnr/raw/main/docs/assets/hero-promo.mp4">
+    <img src="docs/assets/hero-promo-poster.jpg" alt="Watch BNNR demo — click to play video" width="720">
+  </a>
 </p>
+<p align="center"><em>Click the poster to play the full pipeline demo (MP4)</em></p>
 
 # BNNR (Bulletproof Neural Network Recipe)
 
 **BNNR automatically improves your PyTorch vision models using XAI** — find what your model gets wrong, fix it with intelligent augmentation, and prove the result with structured reports and a live dashboard.
 
+**Already have a trained model?** Run **`bnnr analyze`** for a full diagnostic report (metrics, XAI, failure patterns, recommendations) — no retraining. See [Model analysis docs](docs/analyze.md).
+
 Supported tasks (**v0.3.0**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](docs/detection.md).
+
+```bash
+python3 -m bnnr analyze --model checkpoints/best.pt --data cifar10 --output ./analysis_out
+```
 
 ---
 
@@ -101,6 +109,7 @@ Real metrics from a BNNR training run — branch tree, charts, XAI previews, and
 | Examples | [docs/examples.md](docs/examples.md) |
 | Colab (classification) | [Open in Colab](https://colab.research.google.com/github/bnnr-team/bnnr/blob/main/examples/classification/bnnr_classification_demo.ipynb) |
 | API reference | [docs/api_reference.md](docs/api_reference.md) |
+| Model analysis (`bnnr analyze`) | [docs/analyze.md](docs/analyze.md) |
 
 ---
 
