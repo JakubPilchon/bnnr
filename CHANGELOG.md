@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1] — 2026-05-21
+
+### Changed
+
+- **PyPI readme**: dedicated `README.pypi.md` with absolute asset URLs (logo, dashboard screenshots, demo poster) so images render on [pypi.org](https://pypi.org/project/bnnr/); synced with week-1 audit (zero-config quickstart, `bnnr analyze`, `bnnr quickstart`).
+- **GitHub README**: logo and demo video use `raw.githubusercontent.com` URLs for reliable rendering.
+- **Classifiers**: Development Status `4 - Beta` (was Alpha on PyPI 0.3.0 metadata).
+
 ## [0.3.0] — 2026-05-15
 
 ### Added

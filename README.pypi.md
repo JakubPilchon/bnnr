@@ -12,20 +12,19 @@
 </p>
 
 <p align="center">
-  <video width="720" controls playsinline poster="https://raw.githubusercontent.com/bnnr-team/bnnr/main/docs/assets/hero-promo-poster.jpg">
-    <source src="https://raw.githubusercontent.com/bnnr-team/bnnr/main/docs/assets/hero-promo.mp4" type="video/mp4">
-    <a href="https://www.bnnr.dev">Watch the demo on bnnr.dev</a>
-  </video>
+  <a href="https://www.bnnr.dev">
+    <img src="https://raw.githubusercontent.com/bnnr-team/bnnr/main/docs/assets/hero-promo-poster.jpg" alt="Watch BNNR demo with audio on bnnr.dev" width="720">
+  </a>
 </p>
-<p align="center"><em>Demo with audio (1280p). Original 4K recording: <a href="https://www.bnnr.dev">bnnr.dev</a></em></p>
+<p align="center"><em>Full demo with audio (4K): <a href="https://www.bnnr.dev">bnnr.dev</a></em></p>
 
 # BNNR (Bulletproof Neural Network Recipe)
 
 **BNNR automatically improves your PyTorch vision models using XAI** — find what your model gets wrong, fix it with intelligent augmentation, and prove the result with structured reports and a live dashboard.
 
-**Already have a trained model?** Run **`bnnr analyze`** for a full diagnostic report (metrics, XAI, failure patterns, recommendations) — no retraining. See [Model analysis docs](docs/analyze.md).
+**Already have a trained model?** Run **`bnnr analyze`** for a full diagnostic report (metrics, XAI, failure patterns, recommendations) — no retraining. See [Model analysis docs](https://github.com/bnnr-team/bnnr/blob/main/docs/analyze.md).
 
-Supported tasks (**v0.3.0**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](docs/detection.md).
+Supported tasks (**v0.3.0**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](https://github.com/bnnr-team/bnnr/blob/main/docs/detection.md).
 
 ```bash
 python3 -m bnnr analyze --model checkpoints/best.pt --data cifar10 --output ./analysis_out
@@ -38,12 +37,12 @@ python3 -m bnnr analyze --model checkpoints/best.pt --data cifar10 --output ./an
 BNNR uses saliency maps to guide augmentation — not random flips and crops.
 
 <p align="center">
-  <img src="docs/assets/icd-panel.png" alt="ICD — mask what the model looks at" width="720">
+  <img src="https://raw.githubusercontent.com/bnnr-team/bnnr/main/docs/assets/icd-panel.png" alt="ICD — mask what the model looks at" width="720">
 </p>
 <p align="center"><strong>ICD</strong> — masks the regions the model already focuses on (highest saliency), forcing it to learn from context instead of shortcuts.</p>
 
 <p align="center">
-  <img src="docs/assets/aicd-panel.png" alt="AICD — mask what the model ignores" width="720">
+  <img src="https://raw.githubusercontent.com/bnnr-team/bnnr/main/docs/assets/aicd-panel.png" alt="AICD — mask what the model ignores" width="720">
 </p>
 <p align="center"><strong>AICD</strong> — masks low-saliency background and irrelevant textures, sharpening focus on discriminative features.</p>
 
@@ -85,11 +84,11 @@ Real metrics from a BNNR training run — branch tree, charts, XAI previews, and
 
 | Overview | Branch Tree | Metrics |
 |:---:|:---:|:---:|
-| ![Dashboard Overview](docs/assets/dashboard-overview.png) | ![Branch Tree](docs/assets/dashboard-tree.png) | ![Metrics](docs/assets/dashboard-metrics.png) |
+| ![Dashboard Overview](https://raw.githubusercontent.com/bnnr-team/bnnr/main/docs/assets/dashboard-overview.png) | ![Branch Tree](https://raw.githubusercontent.com/bnnr-team/bnnr/main/docs/assets/dashboard-tree.png) | ![Metrics](https://raw.githubusercontent.com/bnnr-team/bnnr/main/docs/assets/dashboard-metrics.png) |
 
 | Samples & XAI | Analysis | Dataset Insight |
 |:---:|:---:|:---:|
-| ![Samples and XAI](docs/assets/dashboard-samples.png) | ![Analysis](docs/assets/dashboard-analysis.png) | ![Dataset Insight](docs/assets/dashboard-insight.png) |
+| ![Samples and XAI](https://raw.githubusercontent.com/bnnr-team/bnnr/main/docs/assets/dashboard-samples.png) | ![Analysis](https://raw.githubusercontent.com/bnnr-team/bnnr/main/docs/assets/dashboard-analysis.png) | ![Dataset Insight](https://raw.githubusercontent.com/bnnr-team/bnnr/main/docs/assets/dashboard-insight.png) |
 
 ---
 
@@ -106,11 +105,11 @@ Real metrics from a BNNR training run — branch tree, charts, XAI previews, and
 | Resource | URL |
 |----------|-----|
 | Website | [bnnr.dev](https://bnnr.dev) |
-| Documentation | [docs/README.md](docs/README.md) |
-| Examples | [docs/examples.md](docs/examples.md) |
+| Documentation | [docs/README.md](https://github.com/bnnr-team/bnnr/blob/main/docs/README.md) |
+| Examples | [docs/examples.md](https://github.com/bnnr-team/bnnr/blob/main/docs/examples.md) |
 | Colab (classification) | [Open in Colab](https://colab.research.google.com/github/bnnr-team/bnnr/blob/main/examples/classification/bnnr_classification_demo.ipynb) |
-| API reference | [docs/api_reference.md](docs/api_reference.md) |
-| Model analysis (`bnnr analyze`) | [docs/analyze.md](docs/analyze.md) |
+| API reference | [docs/api_reference.md](https://github.com/bnnr-team/bnnr/blob/main/docs/api_reference.md) |
+| Model analysis (`bnnr analyze`) | [docs/analyze.md](https://github.com/bnnr-team/bnnr/blob/main/docs/analyze.md) |
 
 ---
 
@@ -128,7 +127,7 @@ result = quick_run(
 print(result.best_metrics)
 ```
 
-See [Golden path](docs/golden_path.md) and [API reference](docs/api_reference.md) for custom adapters and detection.
+See [Golden path](https://github.com/bnnr-team/bnnr/blob/main/docs/golden_path.md) and [API reference](https://github.com/bnnr-team/bnnr/blob/main/docs/api_reference.md) for custom adapters and detection.
 
 ---
 
@@ -164,17 +163,17 @@ python3 -m bnnr dashboard export --run-dir reports/run_YYYYMMDD_HHMMSS --out exp
 
 ### Doc index
 
-- [Getting started](docs/getting_started.md)
-- [Configuration](docs/configuration.md)
-- [CLI](docs/cli.md)
-- [Dashboard](docs/dashboard.md)
-- [Augmentations](docs/augmentations.md)
-- [Detection](docs/detection.md)
-- [Analyze (standalone diagnostics)](docs/analyze.md)
-- [Examples](docs/examples.md)
-- [Notebooks](docs/notebooks.md)
-- [Artifacts](docs/artifacts.md)
-- [Troubleshooting](docs/troubleshooting.md)
+- [Getting started](https://github.com/bnnr-team/bnnr/blob/main/docs/getting_started.md)
+- [Configuration](https://github.com/bnnr-team/bnnr/blob/main/docs/configuration.md)
+- [CLI](https://github.com/bnnr-team/bnnr/blob/main/docs/cli.md)
+- [Dashboard](https://github.com/bnnr-team/bnnr/blob/main/docs/dashboard.md)
+- [Augmentations](https://github.com/bnnr-team/bnnr/blob/main/docs/augmentations.md)
+- [Detection](https://github.com/bnnr-team/bnnr/blob/main/docs/detection.md)
+- [Analyze (standalone diagnostics)](https://github.com/bnnr-team/bnnr/blob/main/docs/analyze.md)
+- [Examples](https://github.com/bnnr-team/bnnr/blob/main/docs/examples.md)
+- [Notebooks](https://github.com/bnnr-team/bnnr/blob/main/docs/notebooks.md)
+- [Artifacts](https://github.com/bnnr-team/bnnr/blob/main/docs/artifacts.md)
+- [Troubleshooting](https://github.com/bnnr-team/bnnr/blob/main/docs/troubleshooting.md)
 
 ### Requirements
 
