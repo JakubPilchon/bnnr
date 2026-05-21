@@ -16,7 +16,7 @@
     <img src="docs/assets/hero-promo-poster.jpg" alt="Watch BNNR demo — click to play video" width="720">
   </a>
 </p>
-<p align="center"><em>Click the poster to play the full pipeline demo (MP4)</em></p>
+<p align="center"><em>Click the poster to play the demo (compressed, no audio). Full version with sound: <a href="https://www.bnnr.dev">bnnr.dev</a></em></p>
 
 # BNNR (Bulletproof Neural Network Recipe)
 
