@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.2] — 2026-05-22
+
+### Fixed
+
+- **`quick_run` tests on Python 3.10+**: mock patches now target the `bnnr.quick_run` submodule directly (the public `bnnr.quick_run` name is the function re-exported from `bnnr.__init__`).
+
 ## [0.4.1] — 2026-05-22
 
 ### Added

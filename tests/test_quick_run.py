@@ -2,11 +2,17 @@
 
 from __future__ import annotations
 
+import importlib
 from unittest.mock import patch
 
 from bnnr.config import default_train_config
 from bnnr.core import BNNRConfig
-from bnnr.quick_run import _guess_target_layers, quick_run
+
+# ``bnnr.quick_run`` on the package is the function (see ``bnnr.__init__``);
+# patch targets must use the submodule object, not ``patch("bnnr.quick_run.*")``.
+_quick_run_mod = importlib.import_module("bnnr.quick_run")
+quick_run = _quick_run_mod.quick_run
+_guess_target_layers = _quick_run_mod._guess_target_layers
 
 
 def test_quick_run_smoke(dummy_model, dummy_dataloader, temp_dir) -> None:
@@ -27,7 +33,7 @@ def test_quick_run_default_config(dummy_model, dummy_dataloader, temp_dir) -> No
         checkpoint_dir=temp_dir / "c",
         report_dir=temp_dir / "r",
     )
-    with patch("bnnr.quick_run.BNNRTrainer") as trainer_cls:
+    with patch.object(_quick_run_mod, "BNNRTrainer") as trainer_cls:
         trainer_cls.return_value.run.return_value.report_json_path = temp_dir / "r" / "x.json"
         quick_run(
             dummy_model,
@@ -47,7 +53,7 @@ def test_quick_run_default_config(dummy_model, dummy_dataloader, temp_dir) -> No
 def test_quick_run_uses_train_defaults_when_config_none(
     dummy_model, dummy_dataloader, temp_dir
 ) -> None:
-    with patch("bnnr.quick_run.default_train_config") as mock_defaults:
+    with patch.object(_quick_run_mod, "default_train_config") as mock_defaults:
         mock_defaults.return_value = BNNRConfig(
             m_epochs=3,
             max_iterations=2,
@@ -56,7 +62,7 @@ def test_quick_run_uses_train_defaults_when_config_none(
             checkpoint_dir=temp_dir / "c",
             report_dir=temp_dir / "r",
         )
-        with patch("bnnr.quick_run.BNNRTrainer") as trainer_cls:
+        with patch.object(_quick_run_mod, "BNNRTrainer") as trainer_cls:
             trainer_cls.return_value.run.return_value.report_json_path = temp_dir / "r" / "x.json"
             quick_run(
                 dummy_model,
@@ -87,7 +93,7 @@ def test_quick_run_infers_target_layers(dummy_model, dummy_dataloader, temp_dir)
         checkpoint_dir=temp_dir / "c",
         report_dir=temp_dir / "r",
     )
-    with patch("bnnr.quick_run.BNNRTrainer") as trainer_cls:
+    with patch.object(_quick_run_mod, "BNNRTrainer") as trainer_cls:
         trainer_cls.return_value.run.return_value.report_json_path = temp_dir / "r" / "x.json"
         quick_run(dummy_model, dummy_dataloader, dummy_dataloader, config=cfg)
     adapter = trainer_cls.call_args.kwargs["model"]
@@ -105,7 +111,7 @@ def test_quick_run_dashboard_starts_before_run(dummy_model, dummy_dataloader, te
     )
     with (
         patch("bnnr.dashboard.start_dashboard") as mock_dash,
-        patch("bnnr.quick_run.BNNRTrainer") as trainer_cls,
+        patch.object(_quick_run_mod, "BNNRTrainer") as trainer_cls,
     ):
         trainer_cls.return_value.run.return_value.report_json_path = temp_dir / "r" / "x.json"
         quick_run(
