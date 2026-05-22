@@ -1,6 +1,8 @@
-# Golden Path: Integrate BNNR Into Your Project
+# Golden Path: Advanced integration
 
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/bnnr?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/bnnr)
+
+> **Start here first:** [`bnnr.quick_run()`](quickstart_api.md) for classification, or `python -m bnnr demo` for a zero-flag CLI showcase. This page is for custom adapters, multi-label, and detection.
 
 ## What you will find here
 Production-style, code-first templates for the three supported tasks:
@@ -11,7 +13,7 @@ Production-style, code-first templates for the three supported tasks:
 Each template includes dashboard-first training flow.
 
 ## When to use this page
-Use this after quickstart, when you integrate BNNR into your own training stack.
+Use this after `quick_run` or `bnnr demo`, when you need full control (`BNNRTrainer`, custom loaders, detection, or multi-label).
 
 ## Shared prerequisites
 

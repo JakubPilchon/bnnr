@@ -24,6 +24,7 @@ import logging
 from typing import Any
 
 import torch
+from torch import nn
 
 from bnnr.augmentations import (
     BaseAugmentation,
@@ -81,7 +82,39 @@ _PRESETS: dict[str, dict[str, Any]] = {
             {"cls": DifPresets, "kwargs": {"probability": 0.5, "intensity": 0.7}},
         ],
     },
+    "demo": {
+        "description": (
+            "Onboarding demo: saliency-guided ICD plus a lightweight baseline aug. "
+            "Requires model and target_layers (see build_demo_augmentations)."
+        ),
+        "augmentations": [],
+    },
 }
+
+
+def build_demo_augmentations(
+    model: nn.Module,
+    target_layers: list[nn.Module],
+    *,
+    random_state: int | None = 42,
+) -> list[BaseAugmentation]:
+    """Augmentation set for ``bnnr demo`` — ICD (XAI-guided) + ChurchNoise candidate."""
+    from bnnr.icd import ICD
+
+    church = ChurchNoise(
+        probability=0.5,
+        intensity=0.5,
+        noise_strength_range=(3.0, 8.0),
+        random_state=random_state,
+    )
+    icd = ICD(
+        model=model,
+        target_layers=target_layers,
+        threshold_percentile=75.0,
+        probability=0.5,
+        random_state=(random_state + 1) if random_state is not None else None,
+    )
+    return [church, icd]
 
 
 def list_presets() -> dict[str, str]:
@@ -93,6 +126,9 @@ def get_preset(
     name: str,
     random_state: int | None = 42,
     prob_override: float | None = None,
+    *,
+    model: nn.Module | None = None,
+    target_layers: list[nn.Module] | None = None,
 ) -> list[BaseAugmentation]:
     """Get augmentations for a named preset.
 
@@ -122,11 +158,19 @@ def get_preset(
                 aug.probability = prob_override
         return augs
 
+    if name == "demo":
+        if model is None or not target_layers:
+            raise ValueError(
+                "Preset 'demo' requires model= and target_layers= (XAI-guided ICD). "
+                "Use build_demo_augmentations(model, target_layers) or pass them to get_preset."
+            )
+        return build_demo_augmentations(model, target_layers, random_state=random_state)
+
     if name == "screening":
         return get_preset("aggressive", random_state=random_state, prob_override=0.5)
 
     if name not in _PRESETS:
-        available = ", ".join(sorted(list(_PRESETS.keys()) + ["auto", "screening"]))
+        available = ", ".join(sorted(list(_PRESETS.keys()) + ["auto", "screening", "demo"]))
         raise ValueError(f"Unknown preset '{name}'. Available: {available}")
 
     preset = _PRESETS[name]

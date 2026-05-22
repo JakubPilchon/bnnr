@@ -247,7 +247,13 @@ class _ImageFolderCNN(nn.Module):
 # ---------------------------------------------------------------------------
 
 
-def _resolve_augmentations(preset: str, seed: int) -> list[BaseAugmentation]:
+def _resolve_augmentations(
+    preset: str,
+    seed: int,
+    *,
+    model: nn.Module | None = None,
+    target_layers: list[nn.Module] | None = None,
+) -> list[BaseAugmentation]:
     """Resolve augmentation preset to a list of augmentations."""
     preset_name = preset.lower().strip()
 
@@ -258,7 +264,12 @@ def _resolve_augmentations(preset: str, seed: int) -> list[BaseAugmentation]:
         augs = auto_select_augmentations(random_state=seed)
     else:
         try:
-            augs = get_preset(preset_name, random_state=seed)
+            augs = get_preset(
+                preset_name,
+                random_state=seed,
+                model=model,
+                target_layers=target_layers,
+            )
         except ValueError:
             logger.warning("Unknown preset '%s', falling back to 'auto'", preset_name)
             warnings.warn(
@@ -416,7 +427,12 @@ def build_cifar10_pipeline(
         device=config.device,
         scheduler=scheduler,
     )
-    augmentations = _resolve_augmentations(augmentation_preset, config.seed)
+    augmentations = _resolve_augmentations(
+        augmentation_preset,
+        config.seed,
+        model=model,
+        target_layers=[model.conv3],
+    )
     return adapter, train_loader, val_loader, augmentations
 
 

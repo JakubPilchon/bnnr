@@ -25,7 +25,7 @@
 
 **Already have a trained model?** Run **`bnnr analyze`** for a full diagnostic report (metrics, XAI, failure patterns, recommendations) — no retraining. See [Model analysis docs](docs/analyze.md).
 
-Supported tasks (**v0.4.0**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](docs/detection.md).
+Supported tasks (**v0.4.1**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](docs/detection.md).
 
 ```bash
 python3 -m bnnr analyze --model checkpoints/best.pt --data cifar10 --output ./analysis_out
@@ -64,13 +64,20 @@ Reproducible benchmark results on CIFAR-10, STL-10, and Fashion-MNIST will be pu
 ```bash
 pip install "bnnr[dashboard]"
 
-python3 -m bnnr train --dataset cifar10 --preset light --with-dashboard
+# Zero flags — CIFAR-10 demo CNN, ICD preset, live dashboard (~1 min)
+python3 -m bnnr demo
 ```
 
-Interactive wizard (same built-in defaults, sample limits 128/64):
+Interactive wizard (prompts for dataset/preset; sample limits 128/64):
 
 ```bash
 python3 -m bnnr quickstart
+```
+
+Full CLI training with built-in defaults:
+
+```bash
+python3 -m bnnr train --dataset cifar10 --preset light --with-dashboard
 ```
 
 Open `http://127.0.0.1:8080/` for the live dashboard (QR code in terminal for mobile on the same Wi-Fi).
@@ -117,18 +124,15 @@ Real metrics from a BNNR training run — branch tree, charts, XAI previews, and
 ## Python API
 
 ```python
-from bnnr import quick_run, BNNRConfig
+import bnnr
 
-result = quick_run(
-    model,
-    train_loader,
-    val_loader,
-    config=BNNRConfig(m_epochs=5, max_iterations=3, device="auto"),
-)
+result = bnnr.quick_run(model, train_loader, val_loader)
 print(result.best_metrics)
 ```
 
-See [Golden path](docs/golden_path.md) and [API reference](docs/api_reference.md) for custom adapters and detection.
+For a one-epoch smoke test: `bnnr.quick_run(..., m_epochs=1, max_iterations=1)`.
+
+Advanced: [Golden path](docs/golden_path.md) (`BNNRTrainer`, custom adapters, detection). API details: [api_reference.md](docs/api_reference.md).
 
 ---
 
@@ -152,6 +156,7 @@ The PyPI **wheel** ships the `bnnr` package only. Runnable scripts (`examples/`)
 
 ```bash
 python3 -m bnnr --help
+python3 -m bnnr demo
 python3 -m bnnr train --help
 python3 -m bnnr analyze --help
 python3 -m bnnr report --help
@@ -165,6 +170,7 @@ python3 -m bnnr dashboard export --run-dir reports/run_YYYYMMDD_HHMMSS --out exp
 ### Doc index
 
 - [Getting started](docs/getting_started.md)
+- [Python quickstart (`quick_run`)](docs/quickstart_api.md)
 - [Configuration](docs/configuration.md)
 - [CLI](docs/cli.md)
 - [Dashboard](docs/dashboard.md)

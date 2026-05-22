@@ -29,6 +29,24 @@ def default_train_config(
     )
 
 
+def default_demo_config(
+    *,
+    checkpoint_dir: Path | None = None,
+    report_dir: Path | None = None,
+) -> BNNRConfig:
+    """Defaults for ``bnnr demo`` — fast CIFAR-10 run with XAI and live dashboard."""
+    return BNNRConfig(
+        m_epochs=1,
+        max_iterations=1,
+        device="auto",
+        xai_enabled=True,
+        event_log_enabled=True,
+        checkpoint_dir=checkpoint_dir or Path("checkpoints"),
+        report_dir=report_dir or Path("reports"),
+        candidate_pruning_enabled=True,
+    )
+
+
 def load_config(config_path: Path) -> BNNRConfig:
     if not config_path.exists():
         raise FileNotFoundError(f"Config not found: {config_path}")

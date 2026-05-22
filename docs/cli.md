@@ -14,6 +14,22 @@ Use this for no-code workflows: training, report reading, dashboard replay/expor
 python3 -m bnnr --help
 ```
 
+## `demo`
+
+```bash
+python3 -m bnnr demo
+```
+
+Zero-config onboarding run — **no flags, no YAML**.
+
+- Downloads **CIFAR-10** automatically on first use.
+- Trains a small **demo CNN** (not ResNet-18) with preset **`demo`** (saliency-guided **ICD** + ChurchNoise).
+- Sample limits: 128 train / 64 val; `m_epochs=1`, `max_iterations=1`, XAI enabled.
+- Starts the **live dashboard** and opens it in your browser (same as `--with-dashboard` on `train`).
+- Writes artifacts under `reports/` and `checkpoints/`; after the run prints paths to the JSON report and `reports/<run>/xai/` heatmaps.
+
+For an interactive wizard with prompts, use [`quickstart`](#quickstart) instead.
+
 ## `quickstart`
 
 ```bash

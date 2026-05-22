@@ -4,6 +4,7 @@ Provides fully functional CLI for training, reporting, and dashboard
 management without requiring any Python code.
 
 Commands:
+- ``bnnr demo``: Zero-config CIFAR-10 demo (XAI + ICD + dashboard)
 - ``bnnr train``: Run BNNR augmentation search
 - ``bnnr quickstart``: Interactive zero-config demo run
 - ``bnnr report``: View/export training reports
@@ -25,7 +26,7 @@ from typing import Any, Optional, Union
 import click
 import typer
 
-from bnnr.config import default_train_config, load_config
+from bnnr.config import default_demo_config, default_train_config, load_config
 from bnnr.core import BNNRTrainer
 from bnnr.dashboard.serve import (
     _find_frontend_dist,
@@ -196,8 +197,8 @@ def _run_train(
     max_train_samples: Optional[int],
     max_val_samples: Optional[int],
     num_classes: Optional[int],
-) -> None:
-    """Shared training path for ``train`` and ``quickstart`` commands."""
+) -> Any:
+    """Shared training path for ``train``, ``demo``, and ``quickstart`` commands."""
     from bnnr.pipelines import build_pipeline
 
     try:
@@ -269,6 +270,52 @@ def _run_train(
                 time.sleep(60)
         except KeyboardInterrupt:
             typer.echo("\nShutting down.")
+
+    return result
+
+
+def _print_demo_followup(result: Any) -> None:
+    """Post-run hints for ``bnnr demo`` (report + XAI artifact paths)."""
+    run_dir = result.report_json_path.parent
+    typer.echo("")
+    typer.echo(f"  Your report: {result.report_json_path}")
+    xai_dir = run_dir / "xai"
+    if xai_dir.is_dir():
+        typer.echo(f"  View XAI heatmaps: {xai_dir}/")
+    typer.echo("")
+
+
+@app.command("demo")
+def demo_command() -> None:
+    """Zero-config demo — CIFAR-10, saliency-guided ICD, live dashboard.
+
+    No YAML, no flags. Downloads CIFAR-10 if needed, trains a small demo CNN,
+    and writes reports under ``reports/``.
+    """
+    typer.echo("")
+    typer.echo("=" * 64)
+    typer.echo("  BNNR DEMO — zero-config showcase")
+    typer.echo("  Dataset: CIFAR-10  |  Preset: demo (ICD + ChurchNoise)")
+    typer.echo("=" * 64)
+    typer.echo("")
+
+    cfg = default_demo_config()
+    result = _run_train(
+        cfg=cfg,
+        dataset="cifar10",
+        data_dir=Path("data"),
+        data_path=None,
+        augmentation_preset="demo",
+        with_dashboard=True,
+        dashboard_port=8080,
+        no_auto_open=False,
+        dashboard_token=None,
+        batch_size=64,
+        max_train_samples=128,
+        max_val_samples=64,
+        num_classes=None,
+    )
+    _print_demo_followup(result)
 
 
 @app.command("train")

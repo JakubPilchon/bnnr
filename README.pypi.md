@@ -24,7 +24,7 @@
 
 **Already have a trained model?** Run **`bnnr analyze`** for a full diagnostic report (metrics, XAI, failure patterns, recommendations) — no retraining. See [Model analysis docs](https://github.com/bnnr-team/bnnr/blob/main/docs/analyze.md).
 
-Supported tasks (**v0.4.0**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](https://github.com/bnnr-team/bnnr/blob/main/docs/detection.md).
+Supported tasks (**v0.4.1**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](https://github.com/bnnr-team/bnnr/blob/main/docs/detection.md).
 
 ```bash
 python3 -m bnnr analyze --model checkpoints/best.pt --data cifar10 --output ./analysis_out
@@ -63,13 +63,20 @@ Reproducible benchmark results on CIFAR-10, STL-10, and Fashion-MNIST will be pu
 ```bash
 pip install "bnnr[dashboard]"
 
-python3 -m bnnr train --dataset cifar10 --preset light --with-dashboard
+# Zero flags — CIFAR-10 demo CNN, ICD preset, live dashboard (~1 min)
+python3 -m bnnr demo
 ```
 
-Interactive wizard (same built-in defaults, sample limits 128/64):
+Interactive wizard (prompts for dataset/preset; sample limits 128/64):
 
 ```bash
 python3 -m bnnr quickstart
+```
+
+Full CLI training with built-in defaults:
+
+```bash
+python3 -m bnnr train --dataset cifar10 --preset light --with-dashboard
 ```
 
 Open `http://127.0.0.1:8080/` for the live dashboard (QR code in terminal for mobile on the same Wi-Fi).
@@ -116,18 +123,13 @@ Real metrics from a BNNR training run — branch tree, charts, XAI previews, and
 ## Python API
 
 ```python
-from bnnr import quick_run, BNNRConfig
+import bnnr
 
-result = quick_run(
-    model,
-    train_loader,
-    val_loader,
-    config=BNNRConfig(m_epochs=5, max_iterations=3, device="auto"),
-)
+result = bnnr.quick_run(model, train_loader, val_loader)
 print(result.best_metrics)
 ```
 
-See [Golden path](https://github.com/bnnr-team/bnnr/blob/main/docs/golden_path.md) and [API reference](https://github.com/bnnr-team/bnnr/blob/main/docs/api_reference.md) for custom adapters and detection.
+Advanced: [Golden path](https://github.com/bnnr-team/bnnr/blob/main/docs/golden_path.md) and [API reference](https://github.com/bnnr-team/bnnr/blob/main/docs/api_reference.md).
 
 ---
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.4.1] — 2026-05-22
+
+### Added
+
+- **CLI `bnnr demo`**: zero-flag onboarding run on CIFAR-10 with a small demo CNN, preset **`demo`** (saliency-guided ICD + ChurchNoise), live dashboard, and post-run paths to the JSON report and `xai/` heatmaps.
+- **Preset `demo`**: model-aware augmentation set for the demo command (`build_demo_augmentations` / `get_preset("demo", model=..., target_layers=...)`).
+- **`default_demo_config()`** for CLI demo defaults (`m_epochs=1`, `max_iterations=1`, XAI on).
+- **`docs/quickstart_api.md`**: one-page `quick_run` reference.
+
+### Changed
+
+- **`quick_run`**: uses `default_train_config()` when `config` is omitted; infers `target_layers` from the last `Conv2d`; `dashboard=True` starts the live dashboard before training (non-blocking after `run()`).
+- **Docs**: README, getting started, CLI, API reference, and golden path promote `bnnr demo` / `quick_run` as the primary quickstarts.
+
 ## [0.4.0] — 2026-05-22
 
 ### Changed

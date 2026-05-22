@@ -12,11 +12,23 @@ Use this when CLI presets are not enough and you need full control.
 
 This page documents only symbols exported publicly from `src/bnnr/__init__.py`.
 
-## Core training API
+## Quickstart API (recommended)
+
+- **`quick_run(model, train_loader, val_loader, ...)`** — one-call classification training with `default_train_config()` defaults (`m_epochs=3`, `max_iterations=2`, `device=auto`, XAI on). Infers `target_layers` from the last `Conv2d` when omitted. Set `dashboard=True` to start the live dashboard before `run()` (non-blocking afterward). Override via kwargs, e.g. `m_epochs=1`. Detection and multi-label: see [golden_path.md](golden_path.md).
+
+```python
+import bnnr
+
+result = bnnr.quick_run(model, train_loader, val_loader)
+print(result.best_metrics)
+```
+
+Returns `BNNRRunResult`.
+
+## Core training API (low-level)
 
 - `BNNRConfig`
 - `BNNRTrainer`
-- `quick_run`
 - `BNNRRunResult`
 - `CheckpointInfo`
 
@@ -143,22 +155,6 @@ trainer = BNNRTrainer(adapter, train_loader, val_loader, auto_select_augmentatio
 result = trainer.run()
 print(result.best_metrics)
 ```
-
-## `quick_run()` helper
-
-`quick_run()` builds `SimpleTorchAdapter` internally.
-
-```python
-from bnnr import quick_run
-
-result = quick_run(
-    model=model,
-    train_loader=train_loader,
-    val_loader=val_loader,
-)
-```
-
-Useful arguments include `augmentations`, `config`/overrides, `criterion`, `optimizer`, `target_layers`, and `eval_metrics`.
 
 ## Detection
 
