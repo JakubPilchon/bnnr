@@ -33,26 +33,22 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset, TensorDataset
 
-from bnnr import (
-    AlbumentationsAugmentation,
+from bnnr import BNNRConfig, BNNRTrainer, SimpleTorchAdapter
+from bnnr.albumentations_aug import AlbumentationsAugmentation, albumentations_available
+from bnnr.augmentations import (
     AugmentationRegistry,
-    BNNRConfig,
-    BNNRTrainer,
     BasicAugmentation,
     ChurchNoise,
     DifPresets,
     Drust,
-    KorniaAugmentation,
     LuxferGlass,
     ProCAM,
-    SimpleTorchAdapter,
     Smugs,
     TeaStains,
     TorchvisionAugmentation,
-    albumentations_available,
-    kornia_available,
-    load_report,
 )
+from bnnr.kornia_aug import KorniaAugmentation, kornia_available
+from bnnr.reporting import load_report
 from bnnr.events import load_events
 from bnnr.augmentations import BaseAugmentation
 from bnnr.icd import AICD, ICD

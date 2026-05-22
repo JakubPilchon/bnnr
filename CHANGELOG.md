@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0] — 2026-05-22
+
+### Changed
+
+- **Training refactor (6.1 / 6.2)**: split monolithic training code into `bnnr.training` submodules and reduced top-level `bnnr` re-exports; public import paths and behavior remain backward compatible.
+
 ## [0.3.1] — 2026-05-21
 
 ### Added

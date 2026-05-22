@@ -8,7 +8,7 @@ from typing import Any
 import yaml
 from pydantic import ValidationError
 
-from bnnr.core import BNNRConfig
+from bnnr.config_model import BNNRConfig
 from bnnr.utils import _parse_fbeta
 
 

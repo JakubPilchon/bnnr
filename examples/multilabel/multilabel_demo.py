@@ -38,13 +38,8 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset, TensorDataset
 
-from bnnr import (
-    AugmentationRegistry,
-    BNNRConfig,
-    BNNRTrainer,
-    SimpleTorchAdapter,
-    start_dashboard,
-)
+from bnnr import BNNRConfig, BNNRTrainer, SimpleTorchAdapter, start_dashboard
+from bnnr.augmentations import AugmentationRegistry
 from bnnr.augmentations import BaseAugmentation
 from bnnr.icd import AICD, ICD
 from bnnr.xai_cache import XAICache

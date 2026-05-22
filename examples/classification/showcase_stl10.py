@@ -37,7 +37,8 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset, Subset
 from torchvision import datasets, transforms
 
-from bnnr import AugmentationRegistry, BNNRTrainer, SimpleTorchAdapter, start_dashboard
+from bnnr import BNNRTrainer, SimpleTorchAdapter, start_dashboard
+from bnnr.augmentations import AugmentationRegistry
 from bnnr.config import load_config
 from bnnr.icd import AICD, ICD
 from bnnr.xai_cache import XAICache
