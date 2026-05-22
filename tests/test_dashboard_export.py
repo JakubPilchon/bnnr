@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from bnnr.dashboard.exporter import export_dashboard_snapshot
+from bnnr.dashboard.exporter import _standalone_report_html, export_dashboard_snapshot
 
 
 def test_export_dashboard_snapshot_creates_static_bundle(temp_dir) -> None:
@@ -36,6 +36,15 @@ def test_export_dashboard_snapshot_creates_static_bundle(temp_dir) -> None:
     assert (exported / "data" / "state.json").exists()
     assert (exported / "artifacts" / "a.txt").exists()
     assert (exported / "manifest.json").exists()
+    manifest = json.loads((exported / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["run_dir"] == "run_1"
+
+
+def test_standalone_report_html_escapes_run_name() -> None:
+    run_name = "<script>alert(1)</script>"
+    index_html = _standalone_report_html({"metrics_timeline": []}, run_name)
+    assert '<div class="run-id">&lt;script&gt;alert(1)&lt;/script&gt;</div>' in index_html
+    assert "<title>BNNR Report — &lt;script&gt;alert(1)&lt;/script&gt;</title>" in index_html
 
 
 def test_export_with_frontend_generates_single_index_with_visual_sections(temp_dir) -> None:
