@@ -57,14 +57,31 @@ Validation accuracy alone can hide shortcut learning. BNNR makes attention and b
 
 ---
 
-## Train with a live loop
+## Quickstart
 
 ```bash
 pip install "bnnr[dashboard]"
-python3 -m bnnr demo   # ~1 min CIFAR-10 + dashboard at http://127.0.0.1:8080/
 ```
 
-Supported tasks (**v0.4.4**): single-label classification, multi-label classification, object detection (COCO-mini / YOLO). See [Detection docs](docs/detection.md).
+| Command | What it does |
+|---------|----------------|
+| **`python3 -m bnnr demo`** | Fastest — zero flags, CIFAR-10, live dashboard (~1 min) → `http://127.0.0.1:8080/` |
+| **`python3 -m bnnr quickstart`** | Interactive wizard (dataset, preset; sample limits 128/64) |
+| **`python3 -m bnnr train --dataset cifar10 --preset light --with-dashboard`** | Full run with built-in defaults (no YAML required) |
+
+```bash
+# Recommended first run
+python3 -m bnnr demo
+```
+
+```bash
+# Guided run
+python3 -m bnnr quickstart
+```
+
+Advanced: pass `--config path.yaml` to override defaults. See [Getting started](docs/getting_started.md) and [CLI](docs/cli.md).
+
+Supported tasks (**v0.4.5**): single-label classification, multi-label classification, object detection (COCO-mini / YOLO). See [Detection docs](docs/detection.md).
 
 ---
 
@@ -96,36 +113,9 @@ BNNR uses saliency maps to guide augmentation — not random flips and crops.
 
 ---
 
-## Quickstart
-
-```bash
-pip install "bnnr[dashboard]"
-
-# Zero flags — CIFAR-10 demo CNN, ICD preset, live dashboard (~1 min)
-python3 -m bnnr demo
-```
-
-Interactive wizard (prompts for dataset/preset; sample limits 128/64):
-
-```bash
-python3 -m bnnr quickstart
-```
-
-Full CLI training with built-in defaults:
-
-```bash
-python3 -m bnnr train --dataset cifar10 --preset light --with-dashboard
-```
-
-Open `http://127.0.0.1:8080/` for the live dashboard (QR code in terminal for mobile on the same Wi-Fi).
-
-Advanced: pass `--config path.yaml` to override defaults.
-
----
-
 ## Live dashboard
 
-Real metrics from a BNNR training run — branch tree, charts, XAI previews, and dataset insights.
+Real metrics from a BNNR training run — branch tree, charts, XAI previews, and dataset insights. After `bnnr demo` or `bnnr train --with-dashboard`, open `http://127.0.0.1:8080/` (QR code in terminal for mobile on the same Wi-Fi).
 
 | Overview | Branch Tree | Metrics |
 |:---:|:---:|:---:|
