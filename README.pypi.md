@@ -22,13 +22,30 @@
 
 **BNNR automatically improves your PyTorch vision models using XAI** — find what your model gets wrong, fix it with intelligent augmentation, and prove the result with structured reports and a live dashboard.
 
-**Already have a trained model?** Run **`bnnr analyze`** for a full diagnostic report (metrics, XAI, failure patterns, recommendations) — no retraining. See [Model analysis docs](https://github.com/bnnr-team/bnnr/blob/main/docs/analyze.md).
+Supported tasks (**v0.4.5**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](https://github.com/bnnr-team/bnnr/blob/main/docs/detection.md).
 
-Supported tasks (**v0.4.4**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](https://github.com/bnnr-team/bnnr/blob/main/docs/detection.md).
+---
+
+## Quickstart
 
 ```bash
-python3 -m bnnr analyze --model checkpoints/best.pt --data cifar10 --output ./analysis_out
+pip install "bnnr[dashboard]"
+
+# Zero flags — CIFAR-10 demo CNN, ICD preset, live dashboard (~1 min)
+python3 -m bnnr demo
 ```
+
+```bash
+python3 -m bnnr quickstart
+```
+
+```bash
+python3 -m bnnr train --dataset cifar10 --preset light --with-dashboard
+```
+
+Open `http://127.0.0.1:8080/` for the live dashboard.
+
+**Already have a checkpoint?** `python3 -m bnnr analyze --model checkpoints/best.pt --data cifar10 --output ./analysis_out` — [docs](https://github.com/bnnr-team/bnnr/blob/main/docs/analyze.md).
 
 ---
 
@@ -55,33 +72,6 @@ BNNR uses saliency maps to guide augmentation — not random flips and crops.
 | *Coming soon* | — | — | — |
 
 Reproducible benchmark results on CIFAR-10, STL-10, and Fashion-MNIST will be published here. Track progress in [GitHub Issues](https://github.com/bnnr-team/bnnr/issues).
-
----
-
-## Quickstart
-
-```bash
-pip install "bnnr[dashboard]"
-
-# Zero flags — CIFAR-10 demo CNN, ICD preset, live dashboard (~1 min)
-python3 -m bnnr demo
-```
-
-Interactive wizard (prompts for dataset/preset; sample limits 128/64):
-
-```bash
-python3 -m bnnr quickstart
-```
-
-Full CLI training with built-in defaults:
-
-```bash
-python3 -m bnnr train --dataset cifar10 --preset light --with-dashboard
-```
-
-Open `http://127.0.0.1:8080/` for the live dashboard (QR code in terminal for mobile on the same Wi-Fi).
-
-Advanced: pass `--config path.yaml` to override defaults.
 
 ---
 

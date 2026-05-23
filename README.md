@@ -23,39 +23,7 @@
 
 **BNNR automatically improves your PyTorch vision models using XAI** — find what your model gets wrong, fix it with intelligent augmentation, and prove the result with structured reports and a live dashboard.
 
-**Already have a trained model?** Run **`bnnr analyze`** for a full diagnostic report (metrics, XAI, failure patterns, recommendations) — no retraining. See [Model analysis docs](docs/analyze.md).
-
-Supported tasks (**v0.4.4**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](docs/detection.md).
-
-```bash
-python3 -m bnnr analyze --model checkpoints/best.pt --data cifar10 --output ./analysis_out
-```
-
----
-
-## XAI-driven augmentations (ICD & AICD)
-
-BNNR uses saliency maps to guide augmentation — not random flips and crops.
-
-<p align="center">
-  <img src="docs/assets/icd-panel.png" alt="ICD — mask what the model looks at" width="720">
-</p>
-<p align="center"><strong>ICD</strong> — masks the regions the model already focuses on (highest saliency), forcing it to learn from context instead of shortcuts.</p>
-
-<p align="center">
-  <img src="docs/assets/aicd-panel.png" alt="AICD — mask what the model ignores" width="720">
-</p>
-<p align="center"><strong>AICD</strong> — masks low-saliency background and irrelevant textures, sharpening focus on discriminative features.</p>
-
----
-
-## Benchmarks
-
-| Dataset | Baseline | + BNNR | Gain |
-|---------|----------|--------|------|
-| *Coming soon* | — | — | — |
-
-Reproducible benchmark results on CIFAR-10, STL-10, and Fashion-MNIST will be published here. Track progress in [GitHub Issues](https://github.com/bnnr-team/bnnr/issues).
+Supported tasks (**v0.4.5**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](docs/detection.md).
 
 ---
 
@@ -86,6 +54,32 @@ Advanced: pass `--config path.yaml` to override defaults.
 
 ---
 
+## XAI-driven augmentations (ICD & AICD)
+
+BNNR uses saliency maps to guide augmentation — not random flips and crops.
+
+<p align="center">
+  <img src="docs/assets/icd-panel.png" alt="ICD — mask what the model looks at" width="720">
+</p>
+<p align="center"><strong>ICD</strong> — masks the regions the model already focuses on (highest saliency), forcing it to learn from context instead of shortcuts.</p>
+
+<p align="center">
+  <img src="docs/assets/aicd-panel.png" alt="AICD — mask what the model ignores" width="720">
+</p>
+<p align="center"><strong>AICD</strong> — masks low-saliency background and irrelevant textures, sharpening focus on discriminative features.</p>
+
+---
+
+## Benchmarks
+
+| Dataset | Baseline | + BNNR | Gain |
+|---------|----------|--------|------|
+| *Coming soon* | — | — | — |
+
+Reproducible benchmark results on CIFAR-10, STL-10, and Fashion-MNIST will be published here. Track progress in [GitHub Issues](https://github.com/bnnr-team/bnnr/issues).
+
+---
+
 ## Live dashboard
 
 Real metrics from a BNNR training run — branch tree, charts, XAI previews, and dataset insights.
@@ -97,6 +91,19 @@ Real metrics from a BNNR training run — branch tree, charts, XAI previews, and
 | Samples & XAI | Analysis | Dataset Insight |
 |:---:|:---:|:---:|
 | ![Samples and XAI](docs/assets/dashboard-samples.png) | ![Analysis](docs/assets/dashboard-analysis.png) | ![Dataset Insight](docs/assets/dashboard-insight.png) |
+
+---
+
+## Analyze an existing model (optional)
+
+If you already have a trained checkpoint, run diagnostics without retraining:
+
+```bash
+pip install bnnr
+python3 -m bnnr analyze --model checkpoints/best.pt --data cifar10 --output ./analysis_out
+```
+
+See [docs/analyze.md](docs/analyze.md) for the full HTML report (metrics, XAI, failure patterns, recommendations).
 
 ---
 
