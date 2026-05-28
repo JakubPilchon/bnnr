@@ -71,9 +71,13 @@ BNNR uses saliency maps to guide augmentation — not random flips and crops.
 
 | Dataset | Without BNNR | BNNR branch search | RandAugment |
 |---------|--------------|--------------------|-------------|
-| CIFAR-10 | *pending* | *pending* | *pending* |
+| CIFAR-10 | 75.3% | 81.4% | 72.5% |
 
-*Run `python benchmarks/run.py` then `python benchmarks/summarize.py`. See [benchmarks/README.md](https://github.com/bnnr-team/bnnr/blob/main/benchmarks/README.md).*
+Median val accuracy, 3 seeds, demo CNN ([methodology](https://github.com/bnnr-team/bnnr/blob/main/benchmarks/README.md)).
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/bnnr-team/bnnr/main/docs/assets/benchmark-xai-comparison.png" alt="CIFAR-10 val 127: original input and OptiCAM — no BNNR vs RandAugment vs BNNR" width="720">
+</p>
 
 ---
 

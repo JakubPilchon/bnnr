@@ -76,13 +76,22 @@ BNNR uses saliency maps to guide augmentation — not random flips and crops.
 
 | Dataset | Without BNNR | BNNR branch search | RandAugment |
 |---------|--------------|--------------------|-------------|
-| CIFAR-10 | *pending* | *pending* | *pending* |
+| CIFAR-10 | 75.3% | 81.4% | 72.5% |
 
-Three-way comparison (metrics + OptiCAM attention maps): [`benchmarks/run.py`](benchmarks/run.py) → [`benchmarks/summarize.py`](benchmarks/summarize.py). See [`benchmarks/README.md`](benchmarks/README.md).
+Median validation accuracy, 3 seeds (42–44), demo CNN on CIFAR-10. Baselines: 5 epochs fixed; BNNR: full branch-search pipeline (more compute). Not SOTA — illustrative comparison. Details: [`benchmarks/README.md`](benchmarks/README.md) · reproduce: [`benchmarks/run.py`](benchmarks/run.py) → [`benchmarks/summarize.py`](benchmarks/summarize.py).
 
----
+### Where the model looks (OptiCAM)
 
-## Live dashboard
+Same CIFAR-10 validation image (test index **127**, seed 44): **original input** plus OptiCAM overlays after three training setups. With crop+flip only, attention scatters toward **image edges**; RandAugment is more centered but diffuse. After BNNR branch search (ICD + AICD + ChurchNoise), heatmaps concentrate on the **vehicle body**.
+
+<p align="center">
+  <img src="docs/assets/benchmark-xai-comparison.png" alt="CIFAR-10 val 127: original input and OptiCAM overlays without BNNR, with RandAugment, and with BNNR branch search" width="960">
+</p>
+
+<p align="center"><em>Original → crop+flip · RandAugment (2,9) · BNNR branch search. Illustrative example from the benchmark harness.</em></p>
+
+Full overlays for 8 fixed val indices: `benchmarks/runs/*/xai/` · regenerate figure: `python scripts/build_benchmark_xai_readme_asset.py --pick val127`
+
 ---
 
 ## Live dashboard
