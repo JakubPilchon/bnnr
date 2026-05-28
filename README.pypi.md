@@ -22,7 +22,9 @@
 
 **BNNR automatically improves your PyTorch vision models using XAI** — find what your model gets wrong, fix it with intelligent augmentation, and prove the result with structured reports and a live dashboard.
 
-Supported tasks (**v0.4.5**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](https://github.com/bnnr-team/bnnr/blob/main/docs/detection.md).
+Supported tasks (**v0.4.6**): single-label classification, multi-label classification, and object detection (COCO-mini / YOLO). See [Detection docs](https://github.com/bnnr-team/bnnr/blob/main/docs/detection.md).
+
+**Sample analyze report (no install):** [HTML preview](https://github.com/bnnr-team/bnnr/blob/main/docs/assets/analyze-report-sample.html)
 
 ---
 
@@ -67,11 +69,11 @@ BNNR uses saliency maps to guide augmentation — not random flips and crops.
 
 ## Benchmarks
 
-| Dataset | Baseline | + BNNR | Gain |
-|---------|----------|--------|------|
-| *Coming soon* | — | — | — |
+| Dataset | Without BNNR | BNNR branch search | RandAugment |
+|---------|--------------|--------------------|-------------|
+| CIFAR-10 | *pending* | *pending* | *pending* |
 
-Reproducible benchmark results on CIFAR-10, STL-10, and Fashion-MNIST will be published here. Track progress in [GitHub Issues](https://github.com/bnnr-team/bnnr/issues).
+*Run `python benchmarks/run.py` then `python benchmarks/summarize.py`. See [benchmarks/README.md](https://github.com/bnnr-team/bnnr/blob/main/benchmarks/README.md).*
 
 ---
 

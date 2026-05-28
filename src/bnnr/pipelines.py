@@ -30,6 +30,13 @@ logger = logging.getLogger(__name__)
 _SUPPORTED_DATASETS = ("mnist", "fashion_mnist", "cifar10", "stl10", "imagefolder", "coco_mini", "yolo")
 
 
+def _scheduler_t_max(config: BNNRConfig) -> int:
+    """CosineAnnealingLR steps; baseline-only runs use ``max_iterations=0``."""
+    if config.max_iterations <= 0:
+        return max(config.m_epochs, 1)
+    return config.m_epochs * config.max_iterations
+
+
 def list_datasets() -> list[str]:
     """Return list of supported dataset names."""
     return list(_SUPPORTED_DATASETS)
@@ -418,7 +425,7 @@ def build_cifar10_pipeline(
     model = _CifarCNN()
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=config.m_epochs * config.max_iterations)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=_scheduler_t_max(config))
     adapter = SimpleTorchAdapter(
         model=model,
         criterion=criterion,
@@ -463,7 +470,7 @@ def build_stl10_pipeline(
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-        optimizer, T_max=config.m_epochs * config.max_iterations,
+        optimizer, T_max=_scheduler_t_max(config),
     )
     adapter = SimpleTorchAdapter(
         model=model,

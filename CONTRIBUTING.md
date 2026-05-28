@@ -49,10 +49,6 @@ pre-commit run --all-files
 5. Ensure `pytest` and `ruff check` pass locally.
 6. Open a PR with a clear summary and test plan.
 
-## GitHub Discussions (maintainers)
-
-To enable community Q&A, turn on **Discussions** in the repository **Settings → General → Features**. Use the **Question** issue template for redirects when Discussions are enabled.
-
 ## Good first issues
 
 Maintainers can seed starter issues with:

@@ -1,4 +1,4 @@
-# BNNR branching — preset light via CLI
+# Shared training budget — identical for every benchmark condition.
 m_epochs: 5
 max_iterations: 3
 metrics: [accuracy, f1_macro, loss]
@@ -11,10 +11,17 @@ xai_samples: 4
 xai_method: opticam
 device: auto
 seed: 42
-save_checkpoints: true
+save_checkpoints: false
 verbose: true
 early_stopping_patience: 2
 event_log_enabled: false
 candidate_pruning_enabled: true
 candidate_pruning_relative_threshold: 0.8
 candidate_pruning_warmup_epochs: 2
+
+# Benchmark-only options (removed before BNNRConfig is built).
+_benchmark:
+  randaugment_num_ops: 2
+  randaugment_magnitude: 9
+  xai_val_indices: [0, 127, 255, 512, 768, 1024, 1536, 2047]
+  xai_method: opticam

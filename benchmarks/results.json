@@ -1,6 +1,6 @@
 {
-  "protocol_version": 1,
-  "notes": "Fill: python benchmarks/run_benchmarks.py --pilot --dataset cifar10 --seed 42",
-  "hardware": {"gpu": null, "pytorch_version": null, "platform": null},
+  "benchmark_id": "cifar10_augmentation_comparison",
+  "notes": "Run: python benchmarks/run.py --seeds 42 --device cpu",
+  "hardware": {},
   "runs": []
 }

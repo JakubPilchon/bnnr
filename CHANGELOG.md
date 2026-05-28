@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.4.6] — 2026-05-28
+
+### Added
+
+- Sample [analyze HTML report](docs/assets/analyze-report-sample.html) for preview without install.
+- **CIFAR-10 benchmark suite** ([`benchmarks/`](benchmarks/)): compares training without BNNR, torchvision RandAugment, and BNNR branch search with ICD/AICD — includes validation metrics and OptiCAM attention overlays on shared validation images.
+
+### Fixed
+
+- **LR scheduler for baseline-only runs** (`max_iterations=0`): `CosineAnnealingLR` no longer uses `T_max=0` in CIFAR/STL pipelines.
+- **Version sync:** package, dashboard API, and PyPI metadata aligned to 0.4.6.
+
+## [0.4.5] — 2026-05-22
+
+### Security
+
+- **CodeQL wave 2:** additional path hardening and CI workflow permissions (see PRs #42–#45).
+
 ## [0.4.4] — 2026-05-22
 
 ### Security
