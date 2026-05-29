@@ -65,15 +65,18 @@ Runnable script: [`examples/classification/icd_plugin_minimal.py`](../examples/c
 
 BNNR uses [pytorch-grad-cam](https://github.com/jacobgil/pytorch-grad-cam) for saliency when `method="gradcam"` or `method="opticam"` (both route through `GradCAM` in [`src/bnnr/xai.py`](../src/bnnr/xai.py) today).
 
-If you use this work in research, please cite the Grad-CAM library:
+## Citation
+
+If you use ICD/AICD from BNNR in research, cite **BNNR** and **pytorch-grad-cam** (saliency). Full BibTeX blocks: [citation.md](citation.md).
 
 ```bibtex
-@misc{jacobgilpytorchcam,
-  title={PyTorch library for CAM methods},
-  author={Jacob Gildenblat and contributors},
-  year={2021},
-  publisher={GitHub},
-  howpublished={\url{https://github.com/jacobgil/pytorch-grad-cam}},
+@software{walo2026bnnr,
+  author = {Walo, Mateusz and Morzhak, Diana and Zydorczyk, Dominika and Saczuk, Zuzanna},
+  title = {{BNNR}: Bulletproof Neural Network Recipe},
+  year = {2026},
+  url = {https://github.com/bnnr-team/bnnr},
+  version = {0.4.10},
+  license = {MIT}
 }
 ```
 

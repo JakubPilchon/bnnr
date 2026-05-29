@@ -17,6 +17,7 @@ Use this as the starting point when you need the shortest path to the page relev
 - `golden_path.md` — integrating BNNR with your own model and dataloaders
 - `plugin_icd.md` — ICD/AICD in your own PyTorch loop (no BNNRTrainer; built on pytorch-grad-cam)
 - `integrations.md` — pytorch-grad-cam and Ultralytics YOLO integration hub + stable URLs
+- `citation.md` — how to cite BNNR (and grad-cam / Ultralytics stacks when applicable)
 - `augmentations.md` — presets and augmentation classes available in code
 - `detection.md` — object detection guide (adapters, augmentations, config, metrics, XAI)
 - `examples.md` — production usage guide for Python scripts under `examples/` (by subdirectory)

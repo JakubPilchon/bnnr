@@ -30,7 +30,18 @@ Use these links in upstream docs or issues (replace `main` with a release tag wh
 | Ultralytics quickstart | https://github.com/bnnr-team/bnnr/blob/main/examples/integrations/ultralytics_yolo_quickstart.py |
 | This hub | https://github.com/bnnr-team/bnnr/blob/main/docs/integrations.md |
 | Detection guide | https://github.com/bnnr-team/bnnr/blob/main/docs/detection.md |
+| Citation (BibTeX) | https://github.com/bnnr-team/bnnr/blob/main/docs/citation.md |
 
 ## License note
 
 BNNR is **MIT**. The [Ultralytics](https://github.com/ultralytics/ultralytics) repository is **AGPL-3.0**; using `pip install ultralytics` in your project is separate from forking Ultralytics. This documentation describes an optional adapter pattern only.
+
+## Citation
+
+| You use | Cite |
+|---------|------|
+| BNNR (any feature) | [BNNR](citation.md#bnnr) |
+| ICD/AICD with `gradcam` saliency | [BNNR](citation.md#bnnr) and [pytorch-grad-cam](citation.md#bnnr-with-pytorch-grad-cam-icd-gradcam-saliency) |
+| `UltralyticsDetectionAdapter` | [BNNR](citation.md#bnnr) and [Ultralytics](citation.md#bnnr-with-ultralytics-yolo) per their license |
+
+BibTeX and plain-text formats: [citation.md](citation.md). GitHub also exposes this via `CITATION.cff` at the repository root.

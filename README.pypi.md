@@ -195,6 +195,12 @@ python3 -m bnnr dashboard export --run-dir reports/run_YYYYMMDD_HHMMSS --out exp
 
 ---
 
+## Citation
+
+If you use BNNR in academic work, cite the repository: [docs/citation.md](https://github.com/bnnr-team/bnnr/blob/main/docs/citation.md) (BibTeX). GitHub: **Cite this repository** via `CITATION.cff`.
+
+---
+
 ## License
 
 MIT License — use BNNR freely in research, production, and commercial projects.

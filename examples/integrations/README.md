@@ -19,3 +19,7 @@ PYTHONPATH=src python examples/integrations/gradcam_to_icd_loop.py
 pip install "bnnr[ultralytics]"
 PYTHONPATH=src:examples/integrations python examples/integrations/ultralytics_yolo_quickstart.py --quick
 ```
+
+## Citation
+
+If you use these examples in a paper or upstream docs, cite BNNR ([BibTeX](../../docs/citation.md)). With grad-cam saliency or Ultralytics, cite those projects as well ([details](../../docs/citation.md)).
