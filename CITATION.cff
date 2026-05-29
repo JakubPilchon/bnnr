@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "BNNR (Bulletproof Neural Network Recipe)"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: Walo
+    given-names: Mateusz
+repository-code: "https://github.com/bnnr-team/bnnr"
+url: "https://github.com/bnnr-team/bnnr"
+license: MIT
+version: 0.4.10
+date-released: 2026-05-29
+
+preferred-citation:
+  type: software
+  authors:
+    - family-names: Walo
+      given-names: Mateusz
+  title: "BNNR (Bulletproof Neural Network Recipe)"
+  year: 2026
+  url: "https://github.com/bnnr-team/bnnr"
+  version: 0.4.10

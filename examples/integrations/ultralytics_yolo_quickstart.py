@@ -7,6 +7,8 @@ Install:
 
 Run:
     PYTHONPATH=src python examples/integrations/ultralytics_yolo_quickstart.py --quick
+
+Citation: cite BNNR (and Ultralytics per their license) — see docs/citation.md in the bnnr repo.
 """
 
 from __future__ import annotations

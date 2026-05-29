@@ -9,6 +9,8 @@ Run:
 Outputs:
     gradcam_icd_out/gradcam_overlay.png
     gradcam_icd_out/icd_augmented.png
+
+Citation: cite BNNR and pytorch-grad-cam — see docs/citation.md in the bnnr repo.
 """
 
 from __future__ import annotations

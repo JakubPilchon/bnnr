@@ -216,6 +216,7 @@ python3 -m bnnr dashboard export --run-dir reports/run_YYYYMMDD_HHMMSS --out exp
 - [Notebooks](docs/notebooks.md)
 - [Artifacts](docs/artifacts.md)
 - [Benchmarks](docs/benchmarks.md)
+- [Citation](docs/citation.md)
 - [Troubleshooting](docs/troubleshooting.md)
 
 ### Requirements
@@ -225,6 +226,12 @@ python3 -m bnnr dashboard export --run-dir reports/run_YYYYMMDD_HHMMSS --out exp
 - Dashboard extra: `fastapi`, `uvicorn`, `websockets`, `qrcode`
 
 </details>
+
+---
+
+## Citation
+
+If you use BNNR in academic work or publish an integration that builds on it, cite the repository. BibTeX and stack-specific notes (grad-cam, Ultralytics): [docs/citation.md](docs/citation.md). GitHub: **Cite this repository** (from `CITATION.cff`).
 
 ---
 

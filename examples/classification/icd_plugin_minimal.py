@@ -8,6 +8,8 @@ Run:
 
 Quick:
     PYTHONPATH=src python examples/classification/icd_plugin_minimal.py --epochs 1 --device cpu
+
+Citation: docs/citation.md in the bnnr repo (BNNR + pytorch-grad-cam when using gradcam).
 """
 
 from __future__ import annotations
