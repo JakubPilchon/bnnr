@@ -203,7 +203,7 @@ def get_preset(
         return augs
 
     if name == "demo":
-        if model is None or not target_layers:
+        if model is None or target_layers is None or not target_layers:
             raise ValueError(
                 "Preset 'demo' requires model= and target_layers= (XAI-guided ICD). "
                 "Use build_demo_augmentations(model, target_layers) or pass them to get_preset."
@@ -222,7 +222,7 @@ def get_preset(
         return get_preset("aggressive", random_state=random_state, prob_override=0.5)
 
     if name not in _PRESETS:
-        available = ", ".join(sorted(list(_PRESETS.keys()) + ["auto", "screening", "demo"]))
+        available = ", ".join(sorted(list(_PRESETS) + ["auto", "screening", "demo"]))
         raise ValueError(f"Unknown preset '{name}'. Available: {available}")
 
     preset = _PRESETS[name]
