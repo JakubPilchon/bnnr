@@ -6,9 +6,9 @@
 2. On a free Colab or Kaggle T4, run one real (condition, seed), e.g. `no_aug seed 42`.
 3. Kill it mid-run and restart to confirm resume-safety (completed work is skipped).
 
-## Experiment enviroment:
+## Experiment environment:
 
-- Machine: Google Collab (T4 GPU)
+- Machine: Google Colab (T4 GPU)
 - Date: 01.07.2026
 - BNNR version: 0.6.3
 - Python version: 3.12.13
