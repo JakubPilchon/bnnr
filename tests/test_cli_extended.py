@@ -305,3 +305,16 @@ class TestPrintPipelineSummary:
             preset="light",
             custom_data_path=Path("/fake/path"),
         )
+
+
+class TestQuickstartCommand:
+    """Run CI smoke for 'bnnr quickstart'"""
+    def test_quickstart_command(self):
+        result = runner.invoke(
+            app, ["quickstart", "--no-auto-open"],
+            input="mnist\n\n\nn\n"
+        )
+
+        assert result.exit_code == 0
+        assert "TRAINING COMPLETE" in result.stdout
+        
