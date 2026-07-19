@@ -430,6 +430,5 @@ class TestDashboardCommand:
                     "/does/not/exist",
                 ],
             )
-    
+
             assert result.exit_code != 0
-        
