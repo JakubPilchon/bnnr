@@ -416,19 +416,19 @@ class TestDashboardCommand:
         assert result.exit_code != 0
 
     def test_dashboard_export_missing_output_dir(self, tmp_path):
-            run_dir = tmp_path / "run_1"
-            run_dir.mkdir(parents=True, exist_ok=True)
+        run_dir = tmp_path / "run_1"
+        run_dir.mkdir(parents=True, exist_ok=True)
 
-            result = runner.invoke(
-                app,
-                [
-                    "dashboard",
-                    "export",
-                    "--run-dir",
-                    str(run_dir),
-                    "--output",
-                    "/does/not/exist",
-                ],
-            )
+        result = runner.invoke(
+            app,
+            [
+                "dashboard",
+                "export",
+                "--run-dir",
+                str(run_dir),
+                "--output",
+                "/does/not/exist",
+            ],
+        )
 
-            assert result.exit_code != 0
+        assert result.exit_code != 0
